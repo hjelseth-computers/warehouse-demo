@@ -25,7 +25,7 @@ class AdminPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
-            ->brandName('Myggen maskin og mekk')
+            ->brandName('Centrum mask og mekk')
             ->id('admin')
             ->path('admin')
             ->breadcrumbs(false)
@@ -57,6 +57,7 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->maxContentWidth(MaxWidth::Full);
+            ->maxContentWidth(MaxWidth::Full)
+            ->viteTheme('resources/css/filament/admin/theme.css');
     }
 }

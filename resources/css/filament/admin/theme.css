@@ -1,0 +1,7 @@
+@import '/vendor/filament/filament/resources/css/theme.css';
+
+@config 'tailwind.config.js';
+
+aside>nav.fi-sidebar-nav {
+    border-right: 1px solid rgba(var(--gray-200), 1);
+}
