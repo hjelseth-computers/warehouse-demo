@@ -58,7 +58,7 @@ class StandResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()->requiresConfirmation(),
             ])
@@ -82,6 +82,7 @@ class StandResource extends Resource
             'index' => Pages\ListStands::route('/'),
             'create' => Pages\CreateStand::route('/create'),
             'edit' => Pages\EditStand::route('/{record}/edit'),
+            'view' => Pages\Stand::route('/{record}/view'),
         ];
     }
 }

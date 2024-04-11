@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('column_placement');
             $table->decimal('depth', 4, 1)->nullable();
             $table->decimal('diameter', 4, 1)->nullable();
-            $table->foreignId(Stand::class);
+            $table->foreignIdFor(Stand::class)->constrained('stands')->cascadeOnDelete();
         });
     }
 

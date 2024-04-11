@@ -10,6 +10,8 @@ class ListItems extends ListRecords
 {
     protected static string $resource = ItemResource::class;
 
+    protected ?string $heading = 'Deler';
+
     protected function getHeaderActions(): array
     {
         return [
