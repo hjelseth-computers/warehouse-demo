@@ -10,6 +10,8 @@ class ListStands extends ListRecords
 {
     protected static string $resource = StandResource::class;
 
+    protected ?string $heading = 'Reoler';
+
     protected function getHeaderActions(): array
     {
         return [

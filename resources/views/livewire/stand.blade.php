@@ -24,8 +24,11 @@
                                     @foreach ($items as $item)
                                         @if ($item->row_placement == $i + 1 && $item->column_placement == $j)
                                             <a href="/admin/items/{{ $item->id }}/edit">
-                                                <li class="list-none"> Ø{{ $item->diameter }} ↧ {{ $item->depth }} -
-                                                    {{ $item->inner_outer }} </li>
+                                                <li class="list-none">{{ $item->name }} Ø {{ $item->diameter }}
+                                                    @if ($item->depth)
+                                                        - {{ $item->depth }}
+                                                    @endif
+                                                </li>
                                             </a>
                                         @endif
                                     @endforeach

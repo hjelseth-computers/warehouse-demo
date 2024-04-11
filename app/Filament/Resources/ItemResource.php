@@ -12,6 +12,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -65,12 +66,10 @@ class ItemResource extends Resource
 
 
                 TextInput::make('diameter')->label(__('Diameter'))
-                    ->required()
                     ->numeric()
                     ->maxValue(999),
 
                 TextInput::make('depth')->label(__('Lengde'))
-                    ->required()
                     ->numeric()
                     ->maxValue(999),
             ])->columns(3);
@@ -80,7 +79,7 @@ class ItemResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name')->label('Navn'),
+                TextColumn::make('name')->label('Navn')->searchable(),
                 TextColumn::make('diameter')->label(__('Diameter'))->searchable()->sortable(),
                 TextColumn::make('depth')->label(__('Lengde'))->searchable()->sortable(),
                 TextColumn::make('stand.name')->label(__('Stativ'))->searchable()->sortable(),
@@ -92,7 +91,37 @@ class ItemResource extends Resource
                 TextColumn::make('row_placement')->label(__('Rad'))->searchable(),
             ])
             ->filters([
-                //
+                Filter::make('MinMax')
+                    ->form([
+                        TextInput::make('ItemName')->label('Navn'),
+                        TextInput::make('MaxDiameter')->label('Max Diameter')->numeric(),
+                        TextInput::make('MinDiameter')->label('Min Diameter')->numeric(),
+                        TextInput::make('MaxDepth')->label('Max Lengde')->numeric(),
+                        TextInput::make('MinDepth')->label('Min Lengde')->numeric(),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query
+                            ->when(
+                                $data['ItemName'],
+                                fn (Builder $query, $record) => $query->where('name', '=', $record)
+                            )
+                            ->when(
+                                $data['MaxDepth'],
+                                fn (Builder $query, $record) => $query->where('depth', '<=', $record)
+                            )
+                            ->when(
+                                $data['MinDepth'],
+                                fn (Builder $query, $record) => $query->where('depth', '>=', $record)
+                            )
+                            ->when(
+                                $data['MaxDiameter'],
+                                fn (Builder $query, $record) => $query->where('diameter', '<=', $record)
+                            )
+                            ->when(
+                                $data['MinDiameter'],
+                                fn (Builder $query, $record) => $query->where('diameter', '>=', $record)
+                            );
+                    })
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
