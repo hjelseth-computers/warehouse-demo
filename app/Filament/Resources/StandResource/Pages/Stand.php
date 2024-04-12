@@ -12,6 +12,8 @@ class Stand extends Page implements HasForms
 {
     protected static string $resource = StandResource::class;
 
+    protected ?string $heading = '';
+
     protected static string $view = 'filament.resources.stand-resource.pages.stand';
 
     use InteractsWithRecord;

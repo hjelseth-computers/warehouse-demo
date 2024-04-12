@@ -10,6 +10,8 @@ class EditStand extends EditRecord
 {
     protected static string $resource = StandResource::class;
 
+    protected ?string $heading = 'Rediger Reol';
+
     protected function getHeaderActions(): array
     {
         return [
