@@ -1,8 +1,8 @@
-<div class="container mx-auto p-4">
+<div class="container mx-auto p-4 table">
 
     <h1 class="text-3xl font-bold mb-4">{{ $this->stand->name }}</h1>
 
-    <div class="overflow-x-auto">
+    <div class="overflow-x-auto ">
         <table class="w-full border-collapse border border-gray-300 table-fixed">
             <thead class="bg-gray-300 bg-opacity-10">
                 <tr>

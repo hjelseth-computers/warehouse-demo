@@ -21,7 +21,7 @@ class ItemsChart extends ChartWidget
                 [
                     'label' => 'Deler',
                     'data' => [11, 10, 5, 2, 11, 4, 14, 1, 7, 4],
-                    'backgroundColor' => ['#36A2EB', '#FF6384', '#FF9F40', '#9966FF', '#FFCD56', '#C9CBCF', 'brown', 'teal', '#b8e6bf', '#facfd2'],
+                    'backgroundColor' => ['#36A2EB', '#FF6384', '#FF9F40', '#9966FF', '#FFCD56', '#C9CBCF', '#ed9f66', 'teal', '#b8e6bf', '#facfd2'],
                     'borderColor' => 'Grey',
                 ],
             ],
